@@ -1,0 +1,15 @@
+{% extends 'master/base.html' %}
+{% block body %}
+<h2 class="mb-4">{{ product.name }}</h2>
+<div class="card">
+  <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product Image">
+  <div class="card-body">
+    <p class="card-text"><strong>Description:</strong> {{ product.description }}</p>
+    <p class="card-text"><strong>Category:</strong> {{ product.category.name }}</p>
+    <p class="card-text"><strong>Price:</strong> ${{ product.price }}</p>
+    <p class="card-text"><strong>Stock Quantity:</strong> {{ product.stock_quantity }}</p>
+    <p class="card-text"><strong>Created At:</strong> {{ product.created_at }}</p>
+  </div>
+</div>
+<a href="{% url 'home' %}" class="btn btn-secondary mt-3">Back to Home</a>
+{% endblock %}

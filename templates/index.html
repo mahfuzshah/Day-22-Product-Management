@@ -1,61 +1,22 @@
 {% extends 'master/base.html' %}
 {% block body %}
-
-<!-- ====== MAIN CONTENT ====== -->
-  <div class="container">
-    <h2>Our Products</h2>
-    <div class="card-container">
-
-      <!-- Product Card 1 -->
-      <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Product Image">
-        <div class="card-body">
-          <h3>Smartphone X</h3>
-          <p><strong>Category:</strong> Electronics</p>
-          <p><strong>Price:</strong> $499.99</p>
-          <p><strong>Stock:</strong> 24 units</p>
-        </div>
+<h2 class="mb-4">Our Products</h2>
+<div class="row">
+  {% for product in products %}
+  <div class="col-md-3 mb-4">
+    <div class="card h-100">
+      <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product Image">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text"><strong>Category:</strong> {{ product.category.name }}</p>
+        <p class="card-text"><strong>Price:</strong> ${{ product.price }}</p>
+        <p class="card-text"><strong>Stock:</strong> {{ product.stock_quantity }} units</p>
+        <a href="{% url 'product_detail' product.pk %}" class="btn btn-primary mt-auto">View Details</a>
       </div>
-
-      <!-- Product Card 2 -->
-      <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Product Image">
-        <div class="card-body">
-          <h3>Leather Jacket</h3>
-          <p><strong>Category:</strong> Fashion</p>
-          <p><strong>Price:</strong> $89.99</p>
-          <p><strong>Stock:</strong> 12 units</p>
-        </div>
-      </div>
-
-      <!-- Product Card 3 -->
-      <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Product Image">
-        <div class="card-body">
-          <h3>Wireless Headphones</h3>
-          <p><strong>Category:</strong> Electronics</p>
-          <p><strong>Price:</strong> $129.99</p>
-          <p><strong>Stock:</strong> 40 units</p>
-        </div>
-      </div>
-
-      <!-- Product Card 4 -->
-      <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Product Image">
-        <div class="card-body">
-          <h3>Coffee Maker</h3>
-          <p><strong>Category:</strong> Home Appliance</p>
-          <p><strong>Price:</strong> $59.99</p>
-          <p><strong>Stock:</strong> 18 units</p>
-        </div>
-      </div>
-
-      <!-- Add more product cards here -->
     </div>
   </div>
-
-
-
-
-
-{% endblock body %}
+  {% empty %}
+  <p>No products available.</p>
+  {% endfor %}
+</div>
+{% endblock %}

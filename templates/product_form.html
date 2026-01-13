@@ -1,0 +1,67 @@
+{% extends 'master/base.html' %}
+{% block body %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header bg-success text-white">
+        <h2 class="mb-0">{{ title }}</h2>
+      </div>
+      <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="{{ form.name.id_for_label }}" class="form-label">Name</label>
+              {{ form.name }}
+              {% if form.name.errors %}
+                <div class="text-danger">{{ form.name.errors }}</div>
+              {% endif %}
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="{{ form.category.id_for_label }}" class="form-label">Category</label>
+              {{ form.category }}
+              {% if form.category.errors %}
+                <div class="text-danger">{{ form.category.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+              <div class="text-danger">{{ form.description.errors }}</div>
+            {% endif %}
+          </div>
+          <div class="mb-3">
+            <label for="{{ form.image.id_for_label }}" class="form-label">Image</label>
+            {{ form.image }}
+            {% if form.image.errors %}
+              <div class="text-danger">{{ form.image.errors }}</div>
+            {% endif %}
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="{{ form.price.id_for_label }}" class="form-label">Price</label>
+              {{ form.price }}
+              {% if form.price.errors %}
+                <div class="text-danger">{{ form.price.errors }}</div>
+              {% endif %}
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="{{ form.stock_quantity.id_for_label }}" class="form-label">Stock Quantity</label>
+              {{ form.stock_quantity }}
+              {% if form.stock_quantity.errors %}
+                <div class="text-danger">{{ form.stock_quantity.errors }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-success me-md-2">Save</button>
+            <a href="{% url 'product_list' %}" class="btn btn-secondary">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
